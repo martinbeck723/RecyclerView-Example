@@ -1,6 +1,8 @@
 package com.example.recyclerviewexample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -25,5 +27,13 @@ public class MainActivity extends AppCompatActivity {
         contacts.add(new Contact("Jolin Tsai", "jolin@qq.com", "https://img.ltn.com.tw/Upload/liveNews/BigPic/600_phpaVpGPO.jpg"));
         contacts.add(new Contact("Ronghao Li", "ronghao@qq.com", "https://youngbean214.files.wordpress.com/2015/03/1.jpg?w=640"));
         contacts.add(new Contact("Rainie Yang", "rainie@qq.com", "https://www.8days.sg/image/12655004/16x9/1920/1080/a56d46b41123c96792efcacebed1b3f6/gn/ry1.jpg"));
+
+        ContactsRecViewAdapter adapter=new ContactsRecViewAdapter(this);
+        adapter.setContacts(contacts);
+
+        contactsRecView.setAdapter(adapter);
+        contactsRecView.setLayoutManager(new GridLayoutManager(this, 2));
+
+
     }
 }
