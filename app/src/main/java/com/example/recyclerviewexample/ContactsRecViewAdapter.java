@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -45,6 +48,11 @@ public class ContactsRecViewAdapter extends RecyclerView.Adapter<ContactsRecView
             }
         });
 
+        Glide.with(context)
+                .asBitmap()
+                .load(contacts.get(position).getImageUrl())
+                .into(holder.image);
+
     }
 
     @Override
@@ -64,12 +72,15 @@ public class ContactsRecViewAdapter extends RecyclerView.Adapter<ContactsRecView
         //for UI onClick
         private CardView parent;
         //inner class constructor
+
+        private ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName=itemView.findViewById(R.id.txtName);
             //for UI onClick
             parent=itemView.findViewById(R.id.parent);
             txtEmail=itemView.findViewById(R.id.txtEmail);
+            image = itemView.findViewById(R.id.image);
         }
     }
 }
